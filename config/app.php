@@ -199,6 +199,9 @@ return [
 
         //Permissions and Roles
         Spatie\Permission\PermissionServiceProvider::class,
+        // Log viewer
+
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
     ],
 

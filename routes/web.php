@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,17 +28,23 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/admin', function () {
-        dd('To może zobaczyć ' . config('auth.roles.admin'));
+//        dd('To może zobaczyć ' . config('auth.roles.admin'));
+        Log::error('Erorr log');
+        Log::error('Debug log');
     })->middleware('role:' . config('auth.roles.admin'))
         ->name('admin');
 
     Route::get('/worker', function () {
-        dd('To może zobaczyć ' . config('auth.roles.worker'));
+        Log::error('Erorr log');
+        Log::error('Debug log');
+//        dd('To może zobaczyć ' . config('auth.roles.worker'));
     })->middleware('role:' . config('auth.roles.worker'))
         ->name('worker');
 
     Route::get('/user', function () {
-        dd('To może zobaczyć ' . config('auth.roles.user'));
+//        dd('To może zobaczyć ' . config('auth.roles.user'));
+        Log::error('Erorr log');
+        Log::error('Debug log');
     })->middleware('role:' . config('auth.roles.user'))
         ->name('user');
 });
