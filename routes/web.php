@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
@@ -27,24 +27,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/admin', function () {
-//        dd('To może zobaczyć ' . config('auth.roles.admin'));
-        Log::error('Erorr log');
-        Log::error('Debug log');
-    })->middleware('role:' . config('auth.roles.admin'))
-        ->name('admin');
+    Route::name('users.')->prefix('users')->group(function () {
+        Route::get('',[UserController::class, 'index'])
+            ->name('index')
+            ->middleware(['permission:users.index']);
+    }
 
-    Route::get('/worker', function () {
-        Log::error('Erorr log');
-        Log::error('Debug log');
-//        dd('To może zobaczyć ' . config('auth.roles.worker'));
-    })->middleware('role:' . config('auth.roles.worker'))
-        ->name('worker');
 
-    Route::get('/user', function () {
-//        dd('To może zobaczyć ' . config('auth.roles.user'));
-        Log::error('Erorr log');
-        Log::error('Debug log');
-    })->middleware('role:' . config('auth.roles.user'))
-        ->name('user');
+    );
+
 });
