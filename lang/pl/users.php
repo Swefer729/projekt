@@ -1,3 +1,10 @@
 <?php
 
-return [];
+return [
+    'attributes' => [
+        'name' => 'Nazwisko i imię',
+        'email' => 'Email',
+        'roles' => 'Role',
+
+    ]
+];
