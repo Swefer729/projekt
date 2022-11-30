@@ -25,6 +25,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name'=>'users.change_role']);
 
         $adminRole = Role::findByName(config('auth.roles.admin'));
-        $adminRole->givePermissionTo('user.index');
+        $adminRole->givePermissionTo('users.index');
+        $adminRole->givePermissionTo('users.store');
+        $adminRole->givePermissionTo('users.destroy');
+        $adminRole->givePermissionTo('users.change_role');
+
     }
 }

@@ -25,4 +25,19 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/admin', function () {
+        dd('To może zobaczyć ' . config('auth.roles.admin'));
+    })->middleware('role:' . config('auth.roles.admin'))
+        ->name('admin');
+
+    Route::get('/worker', function () {
+        dd('To może zobaczyć ' . config('auth.roles.worker'));
+    })->middleware('role:' . config('auth.roles.worker'))
+        ->name('worker');
+
+    Route::get('/user', function () {
+        dd('To może zobaczyć ' . config('auth.roles.user'));
+    })->middleware('role:' . config('auth.roles.user'))
+        ->name('user');
 });
