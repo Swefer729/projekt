@@ -7,5 +7,7 @@ return [
   'to' => 'do',
   'of' => 'z',
   'results' => 'dostępnych',
+  'go_to_page' => 'Idź do strony :page',
+
 
 ];
