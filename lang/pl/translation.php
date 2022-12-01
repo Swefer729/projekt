@@ -15,5 +15,6 @@ return [
         'dashboard' => 'Dashboard',
         'log-viewer' => 'Logi',
         'users' => 'Użytkownicy',
+        'categories' => 'Kategorie',
     ]
 ];

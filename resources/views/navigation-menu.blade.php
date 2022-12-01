@@ -25,6 +25,11 @@
                         {{ __('translation.navigation.users') }}
                     </x-jet-nav-link>
                     @endcan
+                    @can('categories.index')
+                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                        {{ __('translation.navigation.categories') }}
+                    </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
