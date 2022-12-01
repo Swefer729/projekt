@@ -60,4 +60,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(config('auth.roles.admin'));
+    }
+
+    public function isWorker(): bool
+    {
+        return $this->hasRole(config('auth.roles.worker'));
+    }
 }
