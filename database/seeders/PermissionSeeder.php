@@ -26,6 +26,9 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name'=>'log-viewer']);
 
+        Permission::create(['name'=>'categories.index']);
+        Permission::create(['name'=>'categories.manage']);
+
         $adminRole = Role::findByName(config('auth.roles.admin'));
         $adminRole->givePermissionTo('users.index');
         $adminRole->givePermissionTo('users.store');
@@ -33,6 +36,15 @@ class PermissionSeeder extends Seeder
         $adminRole->givePermissionTo('users.change_role');
 
         $adminRole->givePermissionTo('log-viewer');
+
+        $adminRole->givePermissionTo('categories.index');
+        $adminRole->givePermissionTo('categories.manage');
+
+        $workerRole = Role::findByName(config('auth.roles.worker'));
+        $workerRole->givePermissionTo('categories.index');
+
+        $userRole = Role::findByName(config('auth.roles.user'));
+        $userRole->givePermissionTo('categories.index');
 
     }
 }
