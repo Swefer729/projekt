@@ -2,6 +2,8 @@
 
 return [
 
+    'yes' => 'Tak',
+    'no' => 'Nie',
     'attributes' => [
       'created_at' => 'Utoworzono',
       'updated_at' => 'Zaktualizowano',

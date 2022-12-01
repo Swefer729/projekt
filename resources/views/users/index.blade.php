@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <div class="box-border w-auto p-4 border-4 border-400 bg-200">
+            <div class="box-border w-auto p-4 border-4 border-400 bg-200" id="table-view-wrapper">
                 <div>
                     <livewire:users.users-table-view/>
                 </div>
