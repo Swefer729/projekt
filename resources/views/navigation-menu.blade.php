@@ -30,6 +30,11 @@
                         {{ __('translation.navigation.categories') }}
                     </x-jet-nav-link>
                     @endcan
+                    @can('categories.index')
+                    <x-jet-nav-link href="{{ route('glasses.index') }}" :active="request()->routeIs('glasses.index')">
+                        {{ __('translation.navigation.glasses') }}
+                    </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 
