@@ -2,12 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\PhoneModel;
+use App\Models\Producer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Device>
  */
-class GlassFactory extends Factory
+class DeviceFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +19,14 @@ class GlassFactory extends Factory
     public function definition()
     {
         return [
-            'product_name' => $this->faker->unique()->word(100),
+            'producer_id' => Producer::select('id')
+                ->orderByRaw('RAND()')
+                ->first()
+                ->id,
+            'phonemodel_id' => PhoneModel::select('id')
+                ->orderByRaw('RAND()')
+                ->first()
+                ->id,
             'created_at' => $this->faker->dateTimeBetween(
                 '- 8 weeks',
                 '- 4 weeks',
@@ -26,12 +35,7 @@ class GlassFactory extends Factory
                 '- 4 weeks',
                 ' - 1 week',
             ),
-            'deleted_at' => rand(0, 10) === 0
-                ? $this->faker->dateTimeBetween(
-                    '- 1 week',
-                    '+ 2 weeks',
-                )
-                : null
+
         ];
     }
 }

@@ -17,5 +17,10 @@ return [
         'users' => 'Użytkownicy',
         'categories' => 'Kategorie',
         'glasses' => 'Szkła',
+        'producers' => 'Producenci',
+        'phone_models' => 'Modele',
+        'phonemodels' => 'Modele',
+        'products' => 'Produkty',
+        'devices' => 'Urzadzenia',
     ]
 ];

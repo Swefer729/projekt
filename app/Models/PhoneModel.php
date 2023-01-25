@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Glass extends Model
+class PhoneModel extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'product_name',
+        'model_name',
     ];
+
+    public function devices(){
+        return $this->belongsToMany(Device::class);
+    }
 }

@@ -1,8 +1,13 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\GlassController;
+use App\Http\Controllers\PhoneModelController;
+use App\Http\Controllers\ProducerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Device;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +44,9 @@ Route::middleware([
     Route::resource('categories', CategoryController::class);
 
     Route::resource('glasses', GlassController::class);
+    Route::resource('producers', ProducerController::class);
+    Route::resource('phonemodels', PhoneModelController::class);
+    Route::resource('devices', DeviceController::class);
+    Route::resource('products', ProductController::class);
 
 });

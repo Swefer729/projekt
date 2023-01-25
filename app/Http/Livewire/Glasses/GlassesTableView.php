@@ -21,10 +21,6 @@ class GlassesTableView extends TableView
     {
         return [
             Header::title(__('glasses.attributes.product_name')),
-            Header::title(__('glasses.attributes.model_name')),
-            Header::title(__('glasses.attributes.width')),
-            Header::title(__('glasses.attributes.height')),
-            Header::title(__('glasses.attributes.weight')),
             Header::title(__('glasses.attributes.created_at')),
             Header::title(__('glasses.attributes.updated_at'))
         ];
@@ -34,10 +30,6 @@ class GlassesTableView extends TableView
     {
         return [
             $model->product_name  ,
-            $model->model_name  ,
-            $model->width  ,
-            $model->height  ,
-            $model->weight  ,
             $model->created_at  ,
             $model->updated_at  ,
         ];
