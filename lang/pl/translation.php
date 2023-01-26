@@ -22,5 +22,6 @@ return [
         'phonemodels' => 'Modele',
         'products' => 'Produkty',
         'devices' => 'Urzadzenia',
+        'phones' => 'Telefony',
     ]
 ];

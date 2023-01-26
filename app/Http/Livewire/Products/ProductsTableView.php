@@ -33,12 +33,12 @@ class ProductsTableView extends TableView
     public function row($model): array
     {
         return [
-            $model->device->producer->producer_name  ,
+            $model->device->producer->producer_name ,
             $model->device->phonemodel->model_name  ,
             $model->glass->product_name  ,
-            $model->weight,
-            $model->height,
-            $model->width,
+            $model->weight."g",
+            $model->height." mm",
+            $model->width." mm",
 
         ];
     }

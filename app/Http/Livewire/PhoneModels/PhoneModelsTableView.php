@@ -12,6 +12,8 @@ class PhoneModelsTableView extends TableView
 
     protected $model = PhoneModel::class;
 
+    public $searchBy = ['model_name'];
+
     public function repository(): Builder
     {
         return PhoneModel::query();

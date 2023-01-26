@@ -15,6 +15,7 @@ class DevicesTableView extends TableView
      */
     protected $model = Device::class;
 
+    public $searchBy = ['producer.producer_name','phonemodel.model_name'];
 
     public function repository(): Builder
     {
@@ -31,8 +32,8 @@ class DevicesTableView extends TableView
     public function headers(): array
     {
         return [
-            Header::title(__('devices.attribute.producer_name')),
-            Header::title(__('devise.attribute.model_name')),
+            Header::title(__('devices.attributes.producer_name')),
+            Header::title(__('devices.attributes.model_name')),
         ];
     }
 

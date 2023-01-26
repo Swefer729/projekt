@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\GlassController;
+use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneModelController;
 use App\Http\Controllers\ProducerController;
 use App\Http\Controllers\ProductController;
