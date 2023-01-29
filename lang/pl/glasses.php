@@ -11,8 +11,12 @@ return [
         'created_at' => 'Utworzono',
         'updated_at' => 'Zaktualizowano'
     ],
-    'actions' => [],
     'messages' => [
         'successes' => [],
+    ],
+    'actions' => [],
+    'labels' => [
+        'create_form_title' => 'Utworzenie nowego modelu',
+        'edit_form_title' => 'Edycja producenta',
     ],
 ];

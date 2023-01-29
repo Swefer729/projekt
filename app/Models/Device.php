@@ -16,10 +16,10 @@ class Device extends Model
 
 
     public function producer() {
-        return $this->belongsTo(Producer::class,);
+        return $this->belongsTo(Producer::class);
     }
 
     public function phonemodel() {
-        return $this->belongsTo(PhoneModel::class,);
+        return $this->belongsTo(PhoneModel::class);
     }
 }

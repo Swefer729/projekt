@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <img src="https://3mk.pl/wp-content/uploads/2020/09/3mk-Protection-logo-apla.svg" alt="3mk_logo" class="block h-9 w-auto" />
                     </a>
                 </div>
 
@@ -26,27 +26,31 @@
                     </x-jet-nav-link>
                     @endcan
                     @can('categories.index')
-                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
-                        {{ __('translation.navigation.categories') }}
-                    </x-jet-nav-link>
+{{--                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">--}}
+{{--                        {{ __('translation.navigation.categories') }}--}}
+{{--                    </x-jet-nav-link>--}}
                     @endcan
                     @can('categories.index')
                     <x-jet-nav-link href="{{ route('glasses.index') }}" :active="request()->routeIs('glasses.index')">
                         {{ __('translation.navigation.glasses') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('producers.index') }}" :active="request()->routeIs('producers.index')">
-                        {{ __('translation.navigation.producers') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('phonemodels.index') }}" :active="request()->routeIs('phonemodels.index')">
-                        {{ __('translation.navigation.phone_models') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">
-                        {{ __('translation.navigation.devices') }}
-                    </x-jet-nav-link>
+{{--                    <x-jet-nav-link href="{{ route('producers.index') }}" :active="request()->routeIs('producers.index')">--}}
+{{--                        {{ __('translation.navigation.producers') }}--}}
+{{--                    </x-jet-nav-link>--}}
+{{--                    <x-jet-nav-link href="{{ route('phonemodels.index') }}" :active="request()->routeIs('phonemodels.index')">--}}
+{{--                        {{ __('translation.navigation.phone_models') }}--}}
+{{--                    </x-jet-nav-link>--}}
+{{--                    <x-jet-nav-link href="{{ route('devices.index') }}" :active="request()->routeIs('devices.index')">--}}
+{{--                        {{ __('translation.navigation.devices') }}--}}
+{{--                    </x-jet-nav-link>--}}
 
                     <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
                         {{ __('translation.navigation.products') }}
                     </x-jet-nav-link>
+
+                        <x-jet-nav-link href="{{ route('producers.index') }}" :active="request()->routeIs('producers.index')">
+                            {{ __('translation.navigation.phones') }}
+                        </x-jet-nav-link>
                     @endcan
                 </div>
             </div>

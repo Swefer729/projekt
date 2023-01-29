@@ -4,10 +4,15 @@ return [
 
     'yes' => 'Tak',
     'no' => 'Nie',
+    'enter' => 'Zatwierdź',
+    'back' => 'Powrót',
+    'save' => 'Zapisz',
+    'select' => 'Wybierz',
     'attributes' => [
       'created_at' => 'Utoworzono',
       'updated_at' => 'Zaktualizowano',
       'deleted_at' => 'Usunięto',
+        'enter' => 'Zatwierdź',
 
     ],
 
@@ -22,5 +27,6 @@ return [
         'phonemodels' => 'Modele',
         'products' => 'Produkty',
         'devices' => 'Urzadzenia',
+        'phones' => 'Telefony',
     ]
 ];

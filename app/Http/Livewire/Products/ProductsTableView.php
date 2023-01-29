@@ -20,8 +20,7 @@ class ProductsTableView extends TableView
     public function headers(): array
     {
         return [
-            Header::title(__('products.attributes.producer_name')),
-            Header::title(__('products.attributes.model_name')),
+            Header::title(__('products.attributes.phone_model')),
             Header::title(__('products.attributes.product_name')),
             Header::title(__('products.attributes.weight')),
             Header::title(__('products.attributes.height')),
@@ -33,12 +32,11 @@ class ProductsTableView extends TableView
     public function row($model): array
     {
         return [
-            $model->device->producer->producer_name  ,
-            $model->device->phonemodel->model_name  ,
+            implode(' ', [$model->device->producer->producer_name, $model->device->phonemodel->model_name]),
             $model->glass->product_name  ,
-            $model->weight,
-            $model->height,
-            $model->width,
+            $model->weight."g",
+            $model->height." mm",
+            $model->width." mm",
 
         ];
     }

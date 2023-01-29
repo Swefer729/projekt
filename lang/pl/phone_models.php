@@ -12,6 +12,10 @@ return [
         'model_name' => 'Nazwa modelu',
     ],
     'actions' => [],
+    'labels' => [
+        'create_form_title' => 'Utworzenie nowego modelu',
+        'edit_form_title' => 'Edycja producenta',
+    ],
     'messages' => [
         'successes' => [],
     ],

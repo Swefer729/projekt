@@ -12,6 +12,8 @@ class ProducersTableView extends TableView
 
     protected $model = Producer::class;
 
+    public $searchBy = ['producer_name'];
+
     public function repository(): Builder
     {
         return Producer::query();

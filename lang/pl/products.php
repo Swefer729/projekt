@@ -11,6 +11,7 @@ return [
         'created_at' => 'Utworzono',
         'updated_at' => 'Zaktualizowano',
         'producer_name' => 'Nazwa producenta',
+        'phone_model' => 'Model telefonu',
     ],
     'actions' => [],
     'messages' => [

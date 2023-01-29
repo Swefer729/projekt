@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\GlassController;
+use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\PhoneModelController;
 use App\Http\Controllers\ProducerController;
 use App\Http\Controllers\ProductController;
@@ -36,17 +37,31 @@ Route::middleware([
     })->name('dashboard');
 
     Route::name('users.')->prefix('users')->group(function () {
-        Route::get('',[UserController::class, 'index'])
+        Route::get('', [UserController::class, 'index'])
             ->name('index')
             ->middleware(['permission:users.index']);
     });
 
     Route::resource('categories', CategoryController::class);
 
-    Route::resource('glasses', GlassController::class);
-    Route::resource('producers', ProducerController::class);
-    Route::resource('phonemodels', PhoneModelController::class);
-    Route::resource('devices', DeviceController::class);
+    Route::resource('glasses', GlassController::class)->only([
+        'index', 'create', 'edit'
+    ]);
+    Route::resource('producers', ProducerController::class)->only([
+        'index', 'create', 'edit'
+    ]);
+    Route::resource('phonemodels', PhoneModelController::class)->only([
+        'index', 'create', 'edit'
+    ]);
+
+    Route::get('async/phonemodels', [PhoneModelController::class, 'async'])
+        ->name('async.phonemodels');
+
+    Route::get('async/producers', [ProducerController::class, 'async'])
+        ->name('async.producers');
+    Route::resource('devices', DeviceController::class)->only([
+        'index', 'create', 'edit'
+    ]);
     Route::resource('products', ProductController::class);
 
 });

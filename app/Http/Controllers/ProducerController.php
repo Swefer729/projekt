@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProducerRequest;
 use App\Http\Requests\UpdateProducerRequest;
 use App\Models\Producer;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class ProducerController extends Controller
 {
@@ -20,14 +22,41 @@ class ProducerController extends Controller
         );
     }
 
+    public function async(Request $request)
+    {
+        return Producer::query()
+            ->select('id', 'producer_name')
+            ->orderBy('producer_name')
+            ->when(
+                $request->search,
+                fn(Builder $query)
+                => $query->where('producer_name', 'like', "%{$request->search}%")
+            )->when(
+                $request->exists('selected'),
+                fn(Builder $query) => $query->whereIn(
+                    'id',
+                    array_map(
+                        fn(array $item) => $item['id'],
+                        array_filter(
+                            $request->input('selected', []),
+                            fn($item) => (is_array($item) && isset($item['id']))
+                        )
+                    )
+                ),
+                fn(Builder $query) => $query->limit(10)
+            )->get();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view(
+            'producers.form'
+        );
     }
 
     /**
@@ -56,11 +85,16 @@ class ProducerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Producer  $producer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Producer $producer)
     {
-        //
+        return view(
+            'producers.form',
+            [
+                'producer' => $producer
+            ]
+        );
     }
 
     /**

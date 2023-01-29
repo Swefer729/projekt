@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Glass;
 use Illuminate\Http\Request;
 
 class GlassController extends Controller
@@ -22,11 +23,13 @@ class GlassController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view(
+            'glasses.form'
+        );
     }
 
     /**
@@ -55,11 +58,16 @@ class GlassController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(Glass $glass)
     {
-        //
+        return view(
+            'glasses.form',
+            [
+                'glass' => $glass
+            ]
+        );
     }
 
     /**
