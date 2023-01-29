@@ -62,6 +62,11 @@ Route::middleware([
     Route::resource('devices', DeviceController::class)->only([
         'index', 'create', 'edit'
     ]);
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->only([
+        'index','create','edit']
+    );
+
+    Route::get('async/devices', [DeviceController::class, 'async'])
+        ->name('async.devices');
 
 });

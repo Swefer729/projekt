@@ -26,7 +26,6 @@ class DevicesForm extends Component
             'device.phonemodel_id' => [
                 'required',
                 'exists:phone_models,id',
-                'unique:phone_models,id'
             ],
         ];
 

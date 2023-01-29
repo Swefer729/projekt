@@ -1,6 +1,11 @@
 <?php
 
 return [
+
+    'labels' => [
+        'create_form_title' => 'Utworzenie nowego produktu',
+        'edit_form_title' => 'Edycja produktu',
+    ],
     'attributes' => [
         'name' =>  'Nazwa',
         'product_name' => 'Nazwa produktu',

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDeviceRequest;
 use App\Http\Requests\UpdateDeviceRequest;
 use App\Models\Device;
+use App\Models\Producer;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
@@ -31,6 +34,38 @@ class DeviceController extends Controller
             'devices.form'
         );
     }
+
+    public function async(Request $request)
+    {
+        return Device::query()
+            ->select('devices.id', 'producer_name','model_name')
+            ->join('producers','producers.id','=','devices.producer_id')
+            ->join('phone_models','phone_models.id','=','devices.phonemodel_id')
+            ->selectRaw('CONCAT(producers.producer_name, " ", phone_models.model_name) as device_name')
+            ->orderBy('id')
+            ->when(
+                $request->search,
+                fn(Builder $query)
+                => $query->where('producer_name', 'like', "%{$request->search}%")
+                    ->orWhere('model_name', 'like', "%{$request->search}%")
+            )->when(
+                $request->exists('selected'),
+                fn(Builder $query) => $query->whereIn(
+                    'id',
+                    array_map(
+                        fn(array $item) => $item['id'],
+                        array_filter(
+                            $request->input('selected', []),
+                            fn($item) => (is_array($item) && isset($item['id']))
+                        )
+                    )
+                ),
+                fn(Builder $query) => $query->limit(10)
+            )->get();
+    }
+
+
+
 
     /**
      * Store a newly created resource in storage.
