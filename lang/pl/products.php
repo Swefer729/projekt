@@ -18,8 +18,13 @@ return [
         'producer_name' => 'Nazwa producenta',
         'phone_model' => 'Model telefonu',
     ],
-    'actions' => [],
+    'actions' => [
+        'create' => 'Dodaj produkt',
+    ],
     'messages' => [
-        'successes' => [],
+        'successes' => [
+            'stored_title' => 'Utworzono produkt',
+            'stored_description' => 'Utworzono produkt'
+        ],
     ],
 ];

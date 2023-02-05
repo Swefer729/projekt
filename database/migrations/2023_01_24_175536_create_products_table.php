@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('weight');
             $table->integer('height');
             $table->integer('width');
+            $table->softDeletes();
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\PhoneModels;
 
 use App\Models\PhoneModel;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use function Symfony\Component\String\s;
@@ -10,6 +11,7 @@ use function Symfony\Component\String\s;
 class PhoneModelsForm extends Component
 {
     use Actions;
+    use AuthorizesRequests;
     public Bool $editMode;
 
     public function rules()
@@ -32,9 +34,9 @@ class PhoneModelsForm extends Component
         ];
     }
 
-    public function mount(PhoneModel $phoneModel, Bool $editMode)
+    public function mount(PhoneModel $phonemodel, Bool $editMode)
     {
-        $this->phonemodel = $phoneModel;
+        $this->phonemodel = $phonemodel;
         $this->editMode = $editMode;
     }
 
@@ -49,12 +51,18 @@ class PhoneModelsForm extends Component
 
     public function save()
     {
+        if($this->editMode){
+            $this->authorize('update', $this->phonemodel);
+        } else {
+            $this->authorize('create',PhoneModel::class);
+        }
+
         $this->validate();
         $this->phonemodel->save();
         $this->notification()->success(
             $title = $this->editMode
-                ? __('translation.messages.successes.updated_title')
-                : __('translation.messages.successes.stored_title'),
+                ? __('phone_models.messages.successes.updated_title')
+                : __('phone_models.messages.successes.stored_title'),
             $description = $this->editMode
                 ? __('phone_models.messages.successes.updated', ['model_name' => $this->phonemodel->model_name])
                 : __('phone_models.messages.successes.stored', ['model_name' => $this->phonemodel->model_name])

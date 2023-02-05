@@ -10,6 +10,7 @@ return [
         'weight'=> 'Waga',
         'created_at' => 'Utworzono',
         'updated_at' => 'Zaktualizowano',
+        'deleted_at' => 'Usunięto',
         'producer_name' => 'Nazwa producenta',
     ],
     'actions' => [
@@ -21,8 +22,25 @@ return [
     ],
     'messages' => [
         'successes' => [
-            'stored' => 'Dodano producenta :name',
-            'updated' => 'Zaktualizowano producenta :name',
+            'stored' => 'Dodano producenta :producer_name',
+            'updated' => 'Zaktualizowano producenta :producer_name',
+            'destroy' => 'Usunięto producenta :name',
+            'restore' => 'Przywrócono producenta :name',
+            'updated_title' => 'Zaktualizowano producenta',
+            'stored_title' => 'Utworzono producenta',
+
         ],
     ],
+    'dialogs' => [
+        'soft_delete'=>[
+            'title' => "Usuń producenta",
+            'description' => 'Usunąć producenta :name?'
+        ],
+        'restore' => [
+            'title' => 'Przywróc producenta',
+            'description' => "Przywrócić producenta :name?",
+        ]
+
+    ]
 ];
+

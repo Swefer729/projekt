@@ -26,6 +26,12 @@ class ProducerFactory extends Factory
                 '- 4 weeks',
                 ' - 1 week',
             ),
+            'deleted_at' => rand(0, 10) === 0
+                ? $this->faker->dateTimeBetween(
+                    '- 1 week',
+                    '+ 2 weeks',
+                )
+                : null
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Products;
 
 use App\Models\Product;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -11,6 +12,7 @@ use WireUi\Traits\Actions;
 class ProductsForm extends Component
 {
     use Actions;
+    use AuthorizesRequests;
 
 
     public Product $product;
@@ -22,6 +24,22 @@ class ProductsForm extends Component
             'product.device_id' => [
                 'required',
                 'exists:producers,id'
+            ],
+            'product.glass_id' => [
+                'required',
+                'exists:glasses,id'
+            ],
+            'product.weight' => [
+                'required',
+                'numeric'
+            ],
+            'product.height' => [
+                'required',
+                'numeric'
+            ],
+            'product.width' => [
+                'required',
+                'numeric'
             ]
         ];
 
@@ -54,22 +72,22 @@ class ProductsForm extends Component
 
     public function save()
     {
-        $this->validate();
 
+        if($this->editMode){
+            $this->authorize('update', $this->product);
+        } else {
+            $this->authorize('create',Product::class);
+        }
 
-        $product = $this->product;
-
-
-        $product->save();
-
-
+       $this->validate();
+        $this->product->save();
         $this->notification()->success(
             $title = $this->editMode
-                ? __('translation.messages.successes.updated_title')
-                : __('translation.messages.successes.stored.title'),
+                ? __('products.messages.successes.updated_title')
+                : __('products.messages.successes.stored_title'),
             $description = $this->editMode
-                ? __('translation.messages.successes.updated_description')
-                : __('translation.messages.successes.stored_description'),
+                ? __('products.messages.successes.updated_description')
+                : __('products.messages.successes.stored_description'),
         );
     }
 

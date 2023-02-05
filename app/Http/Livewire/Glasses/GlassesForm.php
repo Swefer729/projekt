@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Glasses;
 
 use App\Models\Glass;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use function Symfony\Component\String\s;
@@ -10,6 +11,7 @@ use function Symfony\Component\String\s;
 class GlassesForm extends Component
 {
     use Actions;
+    use AuthorizesRequests;
     public Glass $glass;
     public Bool $editMode;
 
@@ -50,6 +52,12 @@ class GlassesForm extends Component
 
     public function save()
     {
+
+        if($this->editMode){
+            $this->authorize('update', $this->glass);
+        } else {
+            $this->authorize('create',Glass::class);
+        }
         $this->validate();
         $this->glass->save();
         $this->notification()->success(
@@ -57,8 +65,8 @@ class GlassesForm extends Component
                 ? __('translation.messages.successes.updated_title')
                 : __('translation.messages.successes.stored_title'),
             $description = $this->editMode
-                ? __('producers.messages.successes.updated', ['product_name' => $this->glass->product_name])
-                : __('producers.messages.successes.stored', ['product_name' => $this->glass->product_name])
+                ? __('glasses.messages.successes.updated', ['product_name' => $this->glass->product_name])
+                : __('glasses.messages.successes.stored', ['product_name' => $this->glass->product_name])
         );
         $this->editMode = true;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Glass;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class GlassController extends Controller
@@ -14,6 +15,7 @@ class GlassController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Glass::class);
         return view(
             'glasses.index',
 
@@ -27,9 +29,37 @@ class GlassController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Glass::class);
         return view(
             'glasses.form'
         );
+    }
+
+
+
+    public function async(Request $request)
+    {
+        return Glass::query()
+            ->select('id', 'product_name')
+            ->orderBy('product_name')
+            ->when(
+                $request->search,
+                fn(Builder $query)
+                => $query->where('product_name', 'like', "%{$request->search}%")
+            )->when(
+                $request->exists('selected'),
+                fn(Builder $query) => $query->whereIn(
+                    'id',
+                    array_map(
+                        fn(array $item) => $item['id'],
+                        array_filter(
+                            $request->input('selected', []),
+                            fn($item) => (is_array($item) && isset($item['id']))
+                        )
+                    )
+                ),
+                fn(Builder $query) => $query->limit(10)
+            )->get();
     }
 
     /**
@@ -62,6 +92,7 @@ class GlassController extends Controller
      */
     public function edit(Glass $glass)
     {
+        $this->authorize('edit',$glass);
         return view(
             'glasses.form',
             [

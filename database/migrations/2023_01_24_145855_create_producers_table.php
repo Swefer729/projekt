@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("producer_name",50);
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

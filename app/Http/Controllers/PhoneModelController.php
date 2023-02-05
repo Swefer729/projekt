@@ -18,6 +18,7 @@ class PhoneModelController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', PhoneModel::class);
         return view(
             'phonemodels.index',
         );
@@ -56,6 +57,7 @@ class PhoneModelController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', PhoneModel::class);
         return view(
             'phonemodels.form'
         );
@@ -89,12 +91,16 @@ class PhoneModelController extends Controller
      * @param \App\Models\PhoneModel $phoneModel
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(PhoneModel $phoneModel)
+    public function edit(PhoneModel $phonemodel)
     {
+        $this->authorize('update', $phonemodel);
         return view(
-            'phonemodels.form'
+            'phonemodels.form', [
+                'phonemodel' => $phonemodel
+            ]
         );
     }
+
 
     /**
      * Update the specified resource in storage.

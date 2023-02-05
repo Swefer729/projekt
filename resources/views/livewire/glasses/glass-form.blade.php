@@ -10,10 +10,10 @@
         <hr class="my-2">
         <div class="grid grid-cols-2 gap-2">
             <div class=" pt-1.5">
-                <label class="align-middle" for="name">{{__('glasses.attributes.producer_name')}}</label>
+                <label class="align-middle" for="name">{{__('glasses.attributes.product_name')}}</label>
             </div>
             <div class="">
-                <x-input placeholder="{{__('glasses.attributes.producer_name')}}" wire:model="glass.product_name"/>
+                <x-input placeholder="{{__('glasses.attributes.product_name')}}" wire:model="glass.product_name"/>
             </div>
         </div>
         <hr class="my-2">

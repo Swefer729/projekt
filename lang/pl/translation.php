@@ -28,5 +28,19 @@ return [
         'products' => 'Produkty',
         'devices' => 'Urzadzenia',
         'phones' => 'Telefony',
+    ],
+    'actions' => [
+        'edit' => 'Edytuj',
+        'destroy' => 'Usuń',
+        'restore' => 'Przywróć',
+    ],
+    'messages' => [
+        'successes' => [
+            'updated_title' => 'Zaktualizowano',
+            'destroy_title' => 'Usunięto',
+            'restore_title' => 'Przywrócono',
+            ''
+        ],
     ]
 ];
+//translation.messages.successes.updated_description

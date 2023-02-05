@@ -59,6 +59,10 @@ Route::middleware([
 
     Route::get('async/producers', [ProducerController::class, 'async'])
         ->name('async.producers');
+
+    Route::get('async/glasses', [GlassController::class, 'async'])
+        ->name('async.glasses');
+
     Route::resource('devices', DeviceController::class)->only([
         'index', 'create', 'edit'
     ]);
