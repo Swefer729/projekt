@@ -29,7 +29,7 @@
         </div>
         <hr class="my-2">
         <div class="flex justify-end pt-2">
-            <x-button href="{{ route('glasses.index') }}" secondary class="mr-2 bg-gray-400" label="{{__('translation.back')}}"/>
+            <x-button href="{{ route('devices.index') }}" secondary class="mr-2 bg-gray-400" label="{{__('translation.back')}}"/>
             <x-button type="submit" primary label="{{__('translation.save')}}" class="bg-blue-400" spinner/>
 
         </div>

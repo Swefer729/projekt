@@ -18,20 +18,9 @@ class ProducerPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('producers.index');
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Producer  $producer
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Producer $producer)
-    {
-        //
-    }
 
     /**
      * Determine whether the user can create models.
@@ -41,7 +30,8 @@ class ProducerPolicy
      */
     public function create(User $user)
     {
-        //
+
+        return $user->can('producers.manage');
     }
 
     /**
@@ -53,7 +43,8 @@ class ProducerPolicy
      */
     public function update(User $user, Producer $producer)
     {
-        //
+        return $producer->deleted_at === null
+            && $user ->can('producers.manage');
     }
 
     /**
@@ -65,7 +56,8 @@ class ProducerPolicy
      */
     public function delete(User $user, Producer $producer)
     {
-        //
+        return $producer->deleted_at === null
+            && $user->can('producers.manage');
     }
 
     /**
@@ -77,7 +69,9 @@ class ProducerPolicy
      */
     public function restore(User $user, Producer $producer)
     {
-        //
+
+        return $producer->deleted_at !== null
+            && $user->can('producers.manage');
     }
 
     /**

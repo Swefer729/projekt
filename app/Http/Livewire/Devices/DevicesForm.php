@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Devices;
 
 use App\Models\Device;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -11,6 +12,7 @@ use WireUi\Traits\Actions;
 class DevicesForm extends Component
 {
     use Actions;
+    use AuthorizesRequests;
 
 
     public Device $device;
@@ -58,6 +60,12 @@ class DevicesForm extends Component
 
     public function save()
     {
+
+        if($this->editMode){
+            $this->authorize('update', $this->device);
+        } else {
+            $this->authorize('create',Device::class);
+        }
         $this->validate();
 
 
@@ -69,11 +77,11 @@ class DevicesForm extends Component
 
     $this->notification()->success(
         $title = $this->editMode
-        ? __('translation.messages.successes.updated_title')
-            : __('translation.messages.successes.stored.title'),
+        ? __('devices.messages.successes.updated_title',)
+            : __('devices.messages.successes.stored_title'),
         $description = $this->editMode
-            ? __('translation.messages.successes.updated_description')
-            : __('translation.messages.successes.stored_description'),
+            ? __('devices.messages.successes.updated_description')
+            : __('devices.messages.successes.stored_description'),
     );
     }
 

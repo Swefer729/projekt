@@ -5,9 +5,16 @@ return [
         'model_name' =>  'Nazwa modelu',
         'producer_name'=> 'Nazwa producenta'
     ],
-    'actions' => [],
+    'actions' => [
+        'create' => 'Dodaj telefon'
+    ],
     'messages' => [
-        'successes' => [],
+        'successes' => [
+            'updated_title' => "Zaktualizowano telefon",
+            'stored_title' => "Utworzono telefon",
+            'updated_description' => 'Zaktualizowano telefon',
+            'stored_description' => 'Utworzono telefon',
+        ],
     ],
 
     'labels' => [
@@ -15,3 +22,5 @@ return [
         'edit_form_title' => 'Edycja producenta',
     ],
 ];
+
+

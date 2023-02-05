@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Devices;
 
+use App\Http\Livewire\Devices\Actions\EditDeviceAction;
 use App\Models\Category;
 use App\Models\Device;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,12 +16,12 @@ class DevicesTableView extends TableView
      */
     protected $model = Device::class;
 
-    public $searchBy = ['producer.producer_name','phonemodel.model_name'];
+    public $searchBy = ['producer.producer_name', 'phonemodel.model_name'];
 
     public function repository(): Builder
     {
         return Device::query()
-            ->with(['producer','phonemodel']);
+            ->with(['producer', 'phonemodel']);
 
     }
 
@@ -45,8 +46,15 @@ class DevicesTableView extends TableView
     public function row($model): array
     {
         return [
-            $model->producer->producer_name,
-            $model->phonemodel->model_name,
+            $model->producer ? $model->producer->producer_name : '',
+            $model->phonemodel ? $model->phonemodel->model_name : '',
+        ];
+    }
+
+    public function actionsByRow()
+    {
+        return [
+            new EditDeviceAction('devices.edit', __('translation.actions.edit'), 'edit'),
         ];
     }
 }

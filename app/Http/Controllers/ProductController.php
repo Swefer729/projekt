@@ -15,6 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny',Product::class);
         return view(
             'products.index'
         );
@@ -27,6 +28,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Product::class);
       return view(
           'products.form'
       );
@@ -62,8 +64,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('update',$product);
         return view(
-            'products.form'
+            'products.form',
+            [
+                'product' => $product
+            ]
         );
     }
 

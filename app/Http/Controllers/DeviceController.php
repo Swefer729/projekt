@@ -18,6 +18,7 @@ class DeviceController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Device::class);
         return view(
             'devices.index'
         );
@@ -30,6 +31,7 @@ class DeviceController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Device::class);
         return view(
             'devices.form'
         );
@@ -93,11 +95,17 @@ class DeviceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Device $device)
     {
-        //
+        $this->authorize('update', $device);
+        return view(
+            'devices.form',
+            [
+            'device' => $device
+            ]
+        );
     }
 
     /**

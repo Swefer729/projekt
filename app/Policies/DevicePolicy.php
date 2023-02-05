@@ -18,7 +18,7 @@ class DevicePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('devices.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class DevicePolicy
      */
     public function view(User $user, Device $device)
     {
-        //
+
     }
 
     /**
@@ -41,7 +41,7 @@ class DevicePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('devices.manage');
     }
 
     /**
@@ -53,7 +53,8 @@ class DevicePolicy
      */
     public function update(User $user, Device $device)
     {
-        //
+        return $device->deleted_at === null
+            && $user ->can('devices.manage');
     }
 
     /**
@@ -65,7 +66,8 @@ class DevicePolicy
      */
     public function delete(User $user, Device $device)
     {
-        //
+        return $device->deleted_at === null
+            && $user ->can('devices.manage');
     }
 
     /**
@@ -77,7 +79,8 @@ class DevicePolicy
      */
     public function restore(User $user, Device $device)
     {
-        //
+        return $device->deleted_at !== null
+            && $user ->can('devices.manage');
     }
 
     /**

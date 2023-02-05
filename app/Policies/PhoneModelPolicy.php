@@ -18,7 +18,7 @@ class PhoneModelPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->can('phonemodels.index');
     }
 
     /**
@@ -41,7 +41,7 @@ class PhoneModelPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->can('phonemodels.manage');
     }
 
     /**
@@ -53,7 +53,8 @@ class PhoneModelPolicy
      */
     public function update(User $user, PhoneModel $phoneModel)
     {
-        //
+        return $phoneModel->deleted_at === null
+            && $user ->can('phonemodels.manage');
     }
 
     /**
@@ -65,7 +66,8 @@ class PhoneModelPolicy
      */
     public function delete(User $user, PhoneModel $phoneModel)
     {
-        //
+        return $phoneModel->deleted_at ===null
+            && $user->can('phonemodels.manage');
     }
 
     /**
@@ -77,7 +79,8 @@ class PhoneModelPolicy
      */
     public function restore(User $user, PhoneModel $phoneModel)
     {
-        //
+        return $phoneModel->deleted_at !== null
+            && $user->can('phonemodels.manage');
     }
 
     /**

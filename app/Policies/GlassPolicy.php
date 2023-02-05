@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Product;
+use App\Models\Glass;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProductPolicy
+class GlassPolicy
 {
     use HandlesAuthorization;
 
@@ -18,20 +18,10 @@ class ProductPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('products.index');
+        return $user->can('glasses.index');
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Product $product)
-    {
-        //
-    }
+
 
     /**
      * Determine whether the user can create models.
@@ -41,56 +31,56 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        return $user->can('products.manage');
+        return $user->can('glasses.manage');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Glass  $glass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Product $product)
+    public function update(User $user, Glass $glass)
     {
-        return $product->deleted_at === null
-            && $user ->can('products.manage');
+        return $glass->deleted_at === null
+            && $user ->can('glasses.manage');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Glass  $glass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Product $product)
+    public function delete(User $user, Glass $glass)
     {
-        return $product->deleted_at === null
-            && $user ->can('products.manage');
+        return $glass->deleted_at === null
+            && $user ->can('glasses.manage');
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Glass  $glass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Product $product)
+    public function restore(User $user, Glass $glass)
     {
-        return $product->deleted_at !== null
-            && $user ->can('products.manage');
+        return $glass->deleted_at !== null
+            && $user ->can('glasses.manage');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Glass  $glass
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Product $product)
+    public function forceDelete(User $user, Glass $glass)
     {
         //
     }

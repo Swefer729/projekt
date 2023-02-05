@@ -17,6 +17,8 @@ class ProducerController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Producer::class);
+
         return view(
             'producers.index',
         );
@@ -54,6 +56,7 @@ class ProducerController extends Controller
      */
     public function create()
     {
+        $this -> authorize('create', Producer::class);
         return view(
             'producers.form'
         );
@@ -89,6 +92,7 @@ class ProducerController extends Controller
      */
     public function edit(Producer $producer)
     {
+        $this -> authorize('update', $producer);
         return view(
             'producers.form',
             [

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Producers;
 
 use App\Models\Producer;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use function Symfony\Component\String\s;
@@ -10,6 +11,7 @@ use function Symfony\Component\String\s;
 class ProducerForm extends Component
 {
     use Actions;
+    use AuthorizesRequests;
     public Producer $producer;
     public Bool $editMode;
 
@@ -49,12 +51,18 @@ class ProducerForm extends Component
 
     public function save()
     {
+
+        if($this->editMode){
+            $this->authorize('update', $this->producer);
+        } else {
+            $this->authorize('create',Producer::class);
+        }
         $this->validate();
         $this->producer->save();
         $this->notification()->success(
             $title = $this->editMode
-        ? __('translation.messages.successes.updated_title')
-        : __('translation.messages.successes.stored_title'),
+        ? __('producers.messages.successes.updated_title', ['producer_name' => $this->producer->producer_name])
+        : __('producers.messages.successes.stored_title', ['producer_name' => $this->producer->producer_name]),
         $description = $this->editMode
         ? __('producers.messages.successes.updated', ['producer_name' => $this->producer->producer_name])
         : __('producers.messages.successes.stored', ['producer_name' => $this->producer->producer_name])
